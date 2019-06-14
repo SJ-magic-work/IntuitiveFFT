@@ -146,8 +146,8 @@ private:
 	int ZoneFreqId_From[NUM_FREQ_ZONES] = {2, 10, 24, 47, 117 };
 	
 	int Vocal_FreqId_From = 3;
-	int Vocal_FreqId_To = 15;
-	// int Vocal_FreqId_To = 23;
+	// int Vocal_FreqId_To = 15;
+	
 	
 	FREQID_GAIN max_in_VocalZone__Raw[NUM_AUDIO_CHS];
 	FREQID_GAIN max_in_VocalZone__Corrected[NUM_AUDIO_CHS];

@@ -119,6 +119,8 @@ public:
 		
 		ofxFloatSlider Val_DispMax__FFTGain;
 		
+		ofxFloatSlider Vocal_FreqId_To;
+		
 	
 	/****************************************
 	****************************************/

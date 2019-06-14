@@ -339,10 +339,10 @@ void ofApp::update(){
 void ofApp::update_VolcalGain(int dt_ms){
 	for(int ch = 0; ch < NUM_AUDIO_CHS; ch++){
 		double Gain;
-		fft_thread[ch]->get_max_of_Gain(Vocal_FreqId_From, Vocal_FreqId_To, max_in_VocalZone__Raw[ch].FreqId, Gain, false);
+		fft_thread[ch]->get_max_of_Gain(Vocal_FreqId_From, (int)Gui_Global->Vocal_FreqId_To, max_in_VocalZone__Raw[ch].FreqId, Gain, false);
 		max_in_VocalZone__Raw[ch].Gain = LPF(max_in_VocalZone__Raw[ch].Gain, Gain, Gui_Global->LPFAlpha_dt__VovalGain, (float)dt_ms / 1000);
 		
-		fft_thread[ch]->get_max_of_Gain(Vocal_FreqId_From, Vocal_FreqId_To, max_in_VocalZone__Corrected[ch].FreqId, Gain, true);
+		fft_thread[ch]->get_max_of_Gain(Vocal_FreqId_From, (int)Gui_Global->Vocal_FreqId_To, max_in_VocalZone__Corrected[ch].FreqId, Gain, true);
 		max_in_VocalZone__Corrected[ch].Gain = LPF(max_in_VocalZone__Corrected[ch].Gain, Gain, Gui_Global->LPFAlpha_dt__VovalGain, (float)dt_ms / 1000);
 	}
 }
@@ -481,11 +481,11 @@ void ofApp::drawFbo_FFT(ofFbo& fbo, VBO_SET& _Vboset_fft_Raw, VBO_SET& _Vboset_f
 			
 			ofSetColor(col_Raw.get_col(120));
 			float _height = ofMap(_max_in_VocalZone__Raw, 0.0, Gui_Global->Val_DispMax__FFTGain, 0.0, fbo.getHeight());
-			ofDrawLine(GRAPH_BAR_SPACE__FFT_GAIN * Vocal_FreqId_From, _height, GRAPH_BAR_SPACE__FFT_GAIN * Vocal_FreqId_To, _height);
+			ofDrawLine(GRAPH_BAR_SPACE__FFT_GAIN * Vocal_FreqId_From, _height, GRAPH_BAR_SPACE__FFT_GAIN * ((int)Gui_Global->Vocal_FreqId_To + 1), _height);
 			
 			ofSetColor(col_Corrected.get_col(120));
 			_height = ofMap(_max_in_VocalZone__Corrected, 0.0, Gui_Global->Val_DispMax__FFTGain, 0.0, fbo.getHeight());
-			ofDrawLine(GRAPH_BAR_SPACE__FFT_GAIN * Vocal_FreqId_From, _height, GRAPH_BAR_SPACE__FFT_GAIN * Vocal_FreqId_To, _height);
+			ofDrawLine(GRAPH_BAR_SPACE__FFT_GAIN * Vocal_FreqId_From, _height, GRAPH_BAR_SPACE__FFT_GAIN * ((int)Gui_Global->Vocal_FreqId_To + 1), _height);
 			
 		ofPopMatrix();
 		ofPopStyle();

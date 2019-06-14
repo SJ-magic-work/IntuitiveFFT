@@ -73,6 +73,8 @@ void GUI_GLOBAL::setup(string GuiName, string FileName, float x, float y)
 		Group_Graph.add(LPFAlpha_dt__VovalGain.setup("LPF_dt:Vocal", 0.3, 0, 2.0));
 		
 		Group_Graph.add(Val_DispMax__FFTGain.setup("ValDisp FFT", 0.05, 0, 0.1));
+		
+		Group_Graph.add(Vocal_FreqId_To.setup("Vocal_FreqId_To", 23, 15, 23)); // 基音は15でokだが、23あたりの倍音を強く共鳴させるvocalがいる(freddie mercury, mariah carey, ...)ので
 	gui.add(&Group_Graph);
 		
 	/********************
